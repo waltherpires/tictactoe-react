@@ -1,17 +1,13 @@
-const initialLog = "";
 
 export default function Log({ turns }){
-  let turnsLog = initialLog;
 
-  for(const turn of turns){
-    const { square, player } = turn;
-    const { row, col } = square;
-
-    const actualPlayer = player === 'X' ? "1" : "2"; 
-    turnsLog += `\n Player ${actualPlayer} placed an ${player} on [${row}][${col}]`
-  }
-
-  return <ol id="log">
-    {turnsLog} 
-  </ol>
+  return (
+    <ol id="log">
+      {turns.map((turn) => (
+        <li key={`${turn.square.row}${turn.square.col}`}>
+          {turn.player} selected {turn.square.row + 1}, {turn.square.col + 1}
+        </li>
+      ))} 
+    </ol>
+  );
 }
